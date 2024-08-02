@@ -1,2 +1,2 @@
 # ProgWeb
-Roteiros desenvolvidos durante a cadeira de programação para web
+Roteiros desenvolvidos durante a cadeira de Programação para Web
