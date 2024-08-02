@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercícios de 01 a 10</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .result {
+                margin-top: 20px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: #f9f9f9;
+            }
+        </style>
+        <script>
+            // Ex 01: Função para calcular o quadrado de todos os números
+            function calcularQuadrados(){
+                var numeros = document.getElementById("txtQuadrados").value;
+                numeros = numeros.split(",");
+                var resultado = '';
+                for (i = 0; i < numeros.length; i++){
+                    var quadrado = parseInt(numeros[i]) * parseInt(numeros[i]);
+                    resultado += "O quadrado de " + numeros[i] + " é " + quadrado + "<br>";
+                }
+                document.getElementById("resultQuadrados").innerHTML = resultado;
+            }
+
+            // Ex 02: Função para achar o maior valor de uma lista de inteiros
+            function verificarMaior(){
+                var numeros = document.getElementById("txtNumerosMaior").value;
+                numeros = numeros.split(",");
+                var maior = parseInt(numeros[0]);
+                for (i = 1; i < numeros.length; i++){
+                    if(parseInt(numeros[i]) > maior){
+                        maior = parseInt(numeros[i]);
+                    }
+                }
+                document.getElementById("resultMaior").innerHTML = "O maior número digitado é: " + maior;
+            }
+
+            // Ex 03: Função para achar o número de pessoas maiores e menores de 18 anos de uma lista de inteiros
+            function verificarIdadesMaiorMenor18(){
+                var idades = document.getElementById("txtIdades").value;
+                idades = idades.split(",");
+                var maior18 = 0;
+                var menor18 = 0;
+                for (i = 0; i < idades.length; i++){
+                    if(parseInt(idades[i]) >= 18)
+                        maior18++;
+                    else
+                        menor18++;
+                }
+                document.getElementById("resultIdades").innerHTML = "Quantidade de maiores: " + maior18 + "; e menores: " + menor18;
+            }
+
+            // Ex 04: Função para quebrar um data de um dado campo de entrada em dia, mês e ano
+            function separarDiaMesAno() {
+                var data = document.getElementById("txtData").value;
+                data = data.split("/");
+                document.getElementById("resultData").innerHTML = `
+                    O dia é: ${data[0]}<br>
+                    O mês é: ${data[1]}<br>
+                    O ano é: ${data[2]}<br>
+                `;
+            }
+
+            // Ex 05: Função para inverter um dado texto
+            function inverterTexto() {
+                var texto = document.getElementById("txtInverterTexto").value;
+                var textoAux = '';
+                for (var i = texto.length - 1; i >= 0; i--) {
+                    textoAux += texto[i];
+                }
+                document.getElementById("resultInverterTexto").innerHTML = "String invertida: " + textoAux;
+            }
+
+            // Ex 06: Função para ordenar uma lista de inteiros
+            function ordenarLista() {
+                var numeros = document.getElementById("txtOrdena").value;
+                numeros = numeros.split(",").map(num => parseInt(num.trim()));
+                for (var i = numeros.length; i > 0; i--) {
+                    for (var j = 0; j < i - 1; j++) {
+                        if (numeros[j] > numeros[j + 1]) {
+                            var aux = numeros[j];
+                            numeros[j] = numeros[j + 1];
+                            numeros[j + 1] = aux;
+                        }
+                    }
+                }
+                document.getElementById("resultOrdena").innerHTML = "Lista ordenada: " + numeros.join(", ");
+            }
+
+            // Ex 07: Função para calcular a soma dos números ímpares múltiplos de 3
+            function calcularSoma() {
+                var numeros = document.getElementById("txtSoma").value;
+                numeros = numeros.split(",").map(num => parseInt(num.trim()));
+                var soma = 0;
+                for (var i = 0; i < numeros.length; i++) {
+                    var num = numeros[i];
+                    if (!isNaN(num) && num % 2 !== 0 && num % 3 === 0) {
+                        soma += num;
+                    }
+                }
+                document.getElementById("resultSoma").innerHTML = "Soma dos números ímpares múltiplos de 3: " + soma;
+            }
+
+            // Ex 08: Função para calcular o fatorial de cada número
+            function calcularFatoriais() {
+                var numeros = document.getElementById("txtFatoriais").value;
+                numeros = numeros.split(",").map(num => parseInt(num.trim()));
+                let resultado = '';
+                for (let i = 0; i < numeros.length; i++) {
+                    var num = numeros[i];
+                    if (!isNaN(num) && num >= 0) {
+                        resultado += `Fatorial de ${num} é ${fatorial(num)}<br>`;
+                    } else {
+                        resultado += `Valor inválido: ${num}<br>`;
+                    }
+                }
+                document.getElementById("resultFatoriais").innerHTML = "Cálculo dos Fatoriais: <br>" + resultado;
+            }
+
+            function fatorial(n) {
+                let resultado = 1;
+                for (let i = 1; i <= n; i++) {
+                    resultado *= i;
+                }
+                return resultado;
+            }
+
+            // Ex 09: Função para calcular estatísticas
+            function calcularEstatisticas() {
+                var numeros = document.getElementById("txtEstatisticas").value;
+                numeros = numeros.split(",").map(num => parseInt(num.trim()));
+                var soma = 0, qtdPositivos = 0, qtdNegativos = 0, qtdTotal = 0;
+                
+                for (var i = 0; i < numeros.length; i++) {
+                    var num = numeros[i];
+                    if (!isNaN(num)) {
+                        soma += num;
+                        qtdTotal++;
+                        if (num > 0) {
+                            qtdPositivos++;
+                        } else if (num < 0) {
+                            qtdNegativos++;
+                        }
+                    }
+                }
+
+                var media = soma / qtdTotal;
+                var percentualPositivos = (qtdPositivos / qtdTotal) * 100;
+                var percentualNegativos = (qtdNegativos / qtdTotal) * 100;
+
+                document.getElementById("resultEstatisticas").innerHTML = `
+                    Média Aritmética: ${media.toFixed(2)}<br>
+                    Quantidade de Valores Positivos: ${qtdPositivos}<br>
+                    Quantidade de Valores Negativos: ${qtdNegativos}<br>
+                    Percentual de Valores Positivos: ${percentualPositivos.toFixed(2)}%<br>
+                    Percentual de Valores Negativos: ${percentualNegativos.toFixed(2)}%
+                `;
+            }
+
+            // Ex 10: Função para inverter a lista
+            function inverterLista() {
+                var numeros = document.getElementById("txtInverterLista").value;
+                numeros = numeros.split(",").map(num => parseInt(num.trim()));
+                var auxIndice = numeros.length - 1;
+                
+                for (var i = 0; i < Math.ceil(numeros.length / 2); i++) {
+                    var auxTroca = numeros[i];
+                    numeros[i] = numeros[auxIndice];
+                    numeros[auxIndice] = auxTroca;
+                    auxIndice--;
+                }
+
+                document.getElementById("resultInverterLista").innerHTML = "Lista invertida: " + numeros.join(", ");
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Exercícios de 01 a 10</h1>
+
+        <section>
+            <h2>Ex 01: Calcular Quadrados</h2>
+            Números: <input type="text" id="txtQuadrados" placeholder="Digite números separados por vírgula">
+            <input type="button" value="Calcular Quadrados" onclick="calcularQuadrados()">
+            <div id="resultQuadrados" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 02: Achar o Maior Valor</h2>
+            Números: <input type="text" id="txtNumerosMaior" placeholder="Digite números separados por vírgula">
+            <input type="button" value="Achar Maior Valor" onclick="verificarMaior()">
+            <div id="resultMaior" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 03: Verificar Idades Maiores e Menores de 18</h2>
+            Idades: <input type="text" id="txtIdades" placeholder="Digite idades separadas por vírgula">
+            <input type="button" value="Verificar Idades" onclick="verificarIdadesMaiorMenor18()">
+            <div id="resultIdades" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 04: Separar Dia, Mês e Ano</h2>
+            Data (dd/mm/aaaa): <input type="text" id="txtData" placeholder="Digite a data no formato dd/mm/aaaa">
+            <input type="button" value="Separar Data" onclick="separarDiaMesAno()">
+            <div id="resultData" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 05: Inverter Texto</h2>
+            Texto: <input type="text" id="txtInverterTexto" placeholder="Digite o texto">
+            <input type="button" value="Inverter Texto" onclick="inverterTexto()">
+            <div id="resultInverterTexto" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 06: Ordena Lista</h2>
+            Números: <input type="text" id="txtOrdena" placeholder="Digite números separados por vírgula">
+            <input type="button" value="Ordenar Lista" onclick="ordenarLista()">
+            <div id="resultOrdena" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 07: alcular Soma de Todos os Números Ímpares que são Múltiplos de 3</h2>
+            Números: <input type="text" id="txtSoma" placeholder="Digite números separados por vírgula">
+            <input type="button" value="Calcular Soma" onclick="calcularSoma()">
+            <div id="resultSoma" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 08: Calcular Fatoriais</h2>
+            Números: <input type="text" id="txtFatoriais" placeholder="Digite números separados por vírgula">
+            <input type="button" value="Calcular Fatoriais" onclick="calcularFatoriais()">
+            <div id="resultFatoriais" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 09: Calcular Estatísticas</h2>
+            Números: <input type="text" id="txtEstatisticas" placeholder="Digite números separados por vírgula">
+            <input type="button" value="Calcular Estatísticas" onclick="calcularEstatisticas()">
+            <div id="resultEstatisticas" class="result"></div>
+        </section>
+
+        <section>
+            <h2>Ex 10: Inverter Lista</h2>
+            Números: <input type="text" id="txtInverterLista" placeholder="Digite números separados por vírgula">
+            <input type="button" value="Inverter Lista" onclick="inverterLista()">
+            <div id="resultInverterLista" class="result"></div>
+        </section>
+    </body>
+</html>
