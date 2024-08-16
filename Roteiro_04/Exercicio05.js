@@ -21,7 +21,8 @@ const imprimirPrimos = (inicio = 0, fim = 100) => {
 
     return primos;
 };
-  
+
+// Exemplos de uso
 imprimirPrimos();
 imprimirPrimos(10, 50);
 imprimirPrimos(50, 10);

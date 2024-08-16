@@ -11,7 +11,7 @@ const progressaoAritmetica = ({ n, a1, r }) => {
     console.log(`Os termos da PA: ${termosPA.join(', ')}`);
     console.log(`Soma dos termos da PA: ${somaPA}`);
 };
-  
+
 const progressaoGeometrica = ({ n, a1, r }) => {
     let termosPG = [];
     let somaPG = 0;
@@ -25,7 +25,8 @@ const progressaoGeometrica = ({ n, a1, r }) => {
     console.log(`Os termos da PG: ${termosPG.join(', ')}`);
     console.log(`Soma dos termos da PG: ${somaPG}`);
 };
-  
+
+// Objetos de exemplo para PA e PG
 const parametrosPA = {
     id: 1,
     nome: 'Progressão Aritmética',
